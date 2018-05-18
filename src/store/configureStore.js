@@ -6,7 +6,7 @@ const middleware=[thunk]
 export default ()=>{
     const store=createStore(
         combineReducers({
-            signup:signupReducer
+            signup: signupReducer
         }),
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
         applyMiddleware(...middleware)

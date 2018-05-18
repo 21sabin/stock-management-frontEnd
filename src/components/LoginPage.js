@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import AuthService from '../services/authService';
+
 
 
 class IndexPage extends Component {
@@ -23,7 +24,7 @@ class IndexPage extends Component {
         float: "right"
     }
 
-   
+
 
     constructor(props) {
         super(props);
@@ -33,27 +34,27 @@ class IndexPage extends Component {
         }
     }
 
-    handleEmailChange=(e)=>{
+    handleEmailChange = (e) => {
         console.log(e.target.value);
         e.persist()
         this.setState({
-            email:e.target.value
+            email: e.target.value
         })
     }
 
-    handlePasswordChange=(e)=>{
+    handlePasswordChange = (e) => {
         e.persist();
-        this.setState((state)=>{
-            password:state.password=e.target.value
+        this.setState((state) => {
+            password: state.password = e.target.value
         })
     }
 
-    handleSubmit=()=>{
-        let user={email:this.state.email,password:this.state.password}
+    handleSubmit = () => {
+        let user = { email: this.state.email, password: this.state.password }
         AuthService.post(user)
-        .then(response=>{
-            console.log(response)
-        });
+            .then(response => {
+                console.log(response)
+            });
     }
 
 

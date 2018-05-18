@@ -1,17 +1,14 @@
 // Expenses Reducer
 
-const signUpReducerDefaultState = {
-    sucess:"",
-    error:""
-};
+const signUpReducerDefaultState = {userName: 'asdfasf'};
 
 export default (state = signUpReducerDefaultState, action) => {
   switch (action.type) {
     case 'SIGN_UP':
-    console.log("signup reducer called")
-      return [
-        ...state
-      ];
+    return {
+      ...state,
+      msg: action.payload
+    }
     default:
       return state;
   }

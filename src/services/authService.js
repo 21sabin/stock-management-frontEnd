@@ -13,6 +13,7 @@ class AuthService {
           body:JSON.stringify(user)
         })
         .then(response => {
+          
             return response.json();
         })
     }

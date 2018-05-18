@@ -13,6 +13,7 @@ class Signup extends React.Component{
 
     constructor(props){
         super(props);
+        
         // const {dispatch}=props;
         // this.boundActionCreators = bindActionCreators(signUp, dispatch)
     }
@@ -54,22 +55,24 @@ class Signup extends React.Component{
         this.setState(()=>({confirmPassword}))
     }
 
+
     handleSubmit=()=>{
-        console.log(this.state.confirmPassword,"erro")
-        if(this.state.password!=this.state.confirmPassword){
-            this.setState({error:"Password didnot matched .."})
-        }else{
+        // console.log(this.state.confirmPassword,"erro")
+        // if(this.state.password!=this.state.confirmPassword){
+        //     this.setState({error:"Password didnot matched .."})
+        // }else{
            this.props.dispatch(newUser({userName:this.state.userName,
             password:this.state.password,confirmPassword:this.state.confirmPassword}))
-           }
+        //    }
     }
 
     render(){
+       
         return (
             <div style={this.alignCenter}>
                 <Card style={this.cardWidth}>
                     <CardHeader
-                        title=""
+                        title={this.props.msg.userName}
                     />
                     <CardTitle title="Sign Up" />
                     <p className="error">{this.state.error}</p>
@@ -87,11 +90,11 @@ class Signup extends React.Component{
                             onChange={this.handlePassword}
                         />
                         <TextField
-                        type="password"
-                        fullWidth={true}
-                        floatingLabelText="retype password"
-                        onChange={this.handleRetypePassword}
-                    />
+                            type="password"
+                            fullWidth={true}
+                            floatingLabelText="retype password"
+                            onChange={this.handleRetypePassword}
+                        />
                     </CardText>
                     <CardActions style={this.floatActionButtonRight}>
                         <RaisedButton label="Sign up" primary={true} onClick={this.handleSubmit} />
@@ -109,5 +112,12 @@ class Signup extends React.Component{
 //     }, dispatch)
 //   }
 
+const mapStateToProps=(state)=>{
+    debugger
+    return {
+        msg: state.signup
+    }
+}
 
-export default connect()(Signup);
+
+export default connect(mapStateToProps)(Signup);
