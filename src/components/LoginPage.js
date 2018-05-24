@@ -50,11 +50,30 @@ class IndexPage extends Component {
     }
 
     handleSubmit = () => {
-        let user = { email: this.state.email, password: this.state.password }
-        AuthService.post(user)
-            .then(response => {
-                console.log(response)
-            });
+        let user = { email: this.state.email, password: this.state.password };
+        // AuthService.post(user)
+        // .then(res=>{
+        //     console.log(res)
+        // })
+        fetch("http://localhost:3000/api/auth/login",{
+            method:"post",
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(user)
+        })
+        .then(res=>{
+            if(res.ok){
+                res.json().then(data=>{
+                    localStorage.setItem("loggedInUser",JSON.stringify(data));
+                    this.props.history.push('/dashboard')  
+                })
+            }
+        })
+        // AuthService.post(user)
+        //     .then(response => {
+        //         console.log(response)
+        //     });
     }
 
 

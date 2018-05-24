@@ -57,25 +57,25 @@ class Signup extends React.Component{
 
 
     handleSubmit=()=>{
-        // console.log(this.state.confirmPassword,"erro")
-        // if(this.state.password!=this.state.confirmPassword){
-        //     this.setState({error:"Password didnot matched .."})
-        // }else{
+        if(this.state.password!=this.state.confirmPassword){
+            this.setState({error:"Password didnot matched .."})
+        }else{
            this.props.dispatch(newUser({userName:this.state.userName,
             password:this.state.password,confirmPassword:this.state.confirmPassword}))
-        //    }
+            }
     }
 
     render(){
        
         return (
             <div style={this.alignCenter}>
+            
                 <Card style={this.cardWidth}>
+                <p>{this.state.error}</p>
                     <CardHeader
-                        title={this.props.msg.userName}
+                        title={this.props.msg}
                     />
                     <CardTitle title="Sign Up" />
-                    <p className="error">{this.state.error}</p>
                     <CardText>
                         <TextField
                             type="UserName"
@@ -113,9 +113,8 @@ class Signup extends React.Component{
 //   }
 
 const mapStateToProps=(state)=>{
-    debugger
     return {
-        msg: state.signup
+        msg: state.signup.msg.message
     }
 }
 

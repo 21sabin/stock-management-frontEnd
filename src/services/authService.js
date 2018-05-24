@@ -1,19 +1,17 @@
 class AuthService {
-    static baseUrl = 'http://localhost:3000/api/auth';
+    static baseUrl = 'http://localhost:3000';
   
     static post (user) {
-      console.log(user,"authservice")
         const url = AuthService.baseUrl;
-  
-        return fetch(url+"/signup", {
+        console.log(JSON.stringify(user));
+        return fetch("http://localhost:3000/api/auth/login", {
           headers: {
             Content_Type:"application/json"
           },
-          method:"POST",
+          method:"post",
           body:JSON.stringify(user)
         })
         .then(response => {
-          
             return response.json();
         })
     }
